@@ -44,7 +44,8 @@ def main(argv):
     """
     search_terms = parse_args(argv)
     download_dirs = download_research(search_terms)
-    extract_research(download_dirs)
+    print ('Download Done')
+#    extract_research(download_dirs)
 
 
 def parse_args(argv):
@@ -141,7 +142,7 @@ def extract_research(relative_dirs):
             )
         else:
             df_saved = True
-            shutil.rmtree(rdir_full_path)
+#            shutil.rmtree(rdir_full_path)
 
     print('> Clearing out downloads folder...')
 
