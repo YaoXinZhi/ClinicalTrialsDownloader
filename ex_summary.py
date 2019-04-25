@@ -13,14 +13,14 @@ import argparse
 
 def ex_summary(result_path, out):
     
-    count = 0
+    
     
     if not os.path.exists(out):
         os.mkdir(out)
     
     # brief summary
     wf = open('{0}/{1}_summary'.format(out, result_path.split('/')[-1].split('_')[0]), 'w')
-    
+    count = 0
     file_list = os.listdir(result_path)
     for file in file_list:
         tree = etree.parse('{0}/{1}'.format(result_path, file))
@@ -34,9 +34,10 @@ def ex_summary(result_path, out):
                 wf.write('{0}\n'.format(text))
     print ('Get {0} brief Summary'.format(count))
     
+    
     # detailed description
     wf = open('{0}/{1}_description'.format(out, result_path.split('/')[-1].split('_')[0]), 'w')
-    
+    count = 0
     file_list = os.listdir(result_path)
     for file in file_list:
         tree = etree.parse('{0}/{1}'.format(result_path, file))
@@ -48,7 +49,7 @@ def ex_summary(result_path, out):
             if text:
                 count += 1
                 wf.write('{0}\n'.format(text))
-    print ('Get {0} detailed desctiption'.format(count))
+    print ('Get {0} detailed description'.format(count))
     
     wf.close()
     
