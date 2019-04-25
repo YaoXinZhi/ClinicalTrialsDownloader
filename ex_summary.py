@@ -18,6 +18,7 @@ def ex_summary(result_path, out):
     if not os.path.exists(out):
         os.mkdir(out)
     
+    # brief summary
     wf = open('{0}/{1}_summary'.format(out, result_path.split('/')[-1].split('_')[0]), 'w')
     
     file_list = os.listdir(result_path)
@@ -31,7 +32,24 @@ def ex_summary(result_path, out):
             if text:
                 count += 1
                 wf.write('{0}\n'.format(text))
-    print ('Get {0} Summary'.format(count))
+    print ('Get {0} brief Summary'.format(count))
+    
+    # detailed description
+    wf = open('{0}/{1}_description'.format(out, result_path.split('/')[-1].split('_')[0]), 'w')
+    
+    file_list = os.listdir(result_path)
+    for file in file_list:
+        tree = etree.parse('{0}/{1}'.format(result_path, file))
+        root = tree.getroot()
+        text = None
+        for textblock in root.findall('detailed_description'):
+            text = textblock.find('textblock').text
+            text = text.replace('\n', '').replace('   ', '')
+            if text:
+                count += 1
+                wf.write('{0}\n'.format(text))
+    print ('Get {0} detailed desctiption'.format(count))
+    
     wf.close()
     
 if __name__ == '__main__':
