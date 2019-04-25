@@ -44,7 +44,7 @@ def main(argv):
     """
     search_terms = parse_args(argv)
     download_dirs = download_research(search_terms)
-    print ('Download Done')
+    print ('> Download Done')
 #    extract_research(download_dirs)
 
 
